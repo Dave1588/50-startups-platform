@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>50 Startups 特徵選取演算法綜合分析平台 | Machine Learning Feature Selection</title>
-  <meta name="description" content="50 Startups 特徵選取與回歸分析平台：涵蓋 VIF、Backward Elimination、RFECV、LassoCV 與 Forward Stepwise Selection 5 大特徵工程演算法，提供即時視覺化圖表與獲利預測推論模擬器。">
+  <title>機器學習 5 大特徵選取演算法決策平台 | 50 Startups & Spotify Tracks</title>
+  <meta name="description" content="多主題機器學習特徵工程決策平台：支援 50 Startups 獲利預測與 Spotify Tracks 音樂流行度預測，涵蓋 VIF、Backward Elimination、RFECV、LassoCV 與 Forward Stepwise Selection 5 大演算法，提供即時推論模擬與視覺化分析。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -21,19 +21,37 @@
   <!-- Header Navigation -->
   <header class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="#hero" class="brand-logo">
-        <span class="logo-icon">📊</span>
-        <span class="logo-text">50 Startups <span class="logo-accent">FeatureLab</span></span>
-      </a>
+      <div class="nav-left">
+        <a href="#hero" class="brand-logo">
+          <span class="logo-icon" id="brandIcon">📊</span>
+          <span class="logo-text">ML <span class="logo-accent">FeatureLab</span></span>
+        </a>
+
+        <!-- TOP DROPDOWN SELECTOR: Switch between 50 Startups and Spotify Tracks -->
+        <div class="dataset-switcher-box">
+          <label for="datasetSelector" class="switcher-tag">📌 分析案例切換：</label>
+          <div class="select-wrapper">
+            <select id="datasetSelector" class="dataset-dropdown">
+              <option value="startup" selected>🏢 50 Startups (新創獲利預測)</option>
+              <option value="spotify">🎵 Spotify Tracks (音樂流行度預測)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
       <nav class="nav-links">
         <a href="#overview" class="nav-item">平台總覽</a>
+        <a href="#stepwise" class="nav-item active-nav">逐步篩選與曲線</a>
         <a href="#algorithms" class="nav-item">5大演算法評析</a>
-        <a href="#stepwise" class="nav-item active-nav">前向篩選與曲線</a>
-        <a href="#simulator" class="nav-item">獲利預測模擬器</a>
-        <a href="#matrix" class="nav-item">綜合決策矩陣</a>
+        <a href="#simulator" class="nav-item">即時推論模擬器</a>
+        <a href="#matrix" class="nav-item">決策矩陣</a>
       </nav>
+
       <div class="nav-actions">
-        <a href="#deployment" class="btn btn-sm btn-outline">GitHub Pages 部署</a>
+        <a href="https://github.com/Dave1588/50-startups-platform" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
+          <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor" style="margin-right: 4px;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+          GitHub Repo
+        </a>
       </div>
     </div>
   </header>
@@ -41,53 +59,53 @@
   <main class="main-content">
     <!-- Hero Banner Section -->
     <section class="hero-section" id="hero">
-      <div class="hero-badge">
-        <span class="badge-dot"></span> 機器學習特徵工程 & 回歸分析決策平台
+      <div class="hero-badge" id="heroBadge">
+        <span class="badge-dot"></span> 機器學習特徵工程 & 回歸決策分析平台
       </div>
-      <h1 class="hero-title">
+      <h1 class="hero-title" id="heroTitle">
         50 Startups <br>
         <span class="gradient-text">5大特徵選取演算法</span> 深度解析
       </h1>
-      <p class="hero-subtitle">
+      <p class="hero-subtitle" id="heroSubtitle">
         全面解構研發支出、行銷費用與行政成本對新創企業獲利（Profit）的決定性影響，消除多重共線性，探尋最精準、最具解釋力的簡約線性回歸模型。
       </p>
 
       <!-- Key Metrics Row -->
       <div class="metrics-grid" id="overview">
-        <div class="metric-card">
+        <div class="metric-card" id="cardMetric1">
           <div class="metric-header">
-            <span class="metric-icon">📁</span>
-            <span class="metric-label">樣本數據總量</span>
+            <span class="metric-icon" id="mIcon1">📁</span>
+            <span class="metric-label" id="mLabel1">樣本數據總量</span>
           </div>
-          <div class="metric-value">50 <span class="metric-unit">家新創</span></div>
-          <div class="metric-desc">美國 3 大州（CA, FL, NY）創業投入</div>
+          <div class="metric-value" id="mVal1">50 <span class="metric-unit">家新創</span></div>
+          <div class="metric-desc" id="mDesc1">美國 3 大州（CA, FL, NY）創業投入</div>
         </div>
 
-        <div class="metric-card highlight-metric">
+        <div class="metric-card highlight-metric" id="cardMetric2">
           <div class="metric-header">
-            <span class="metric-icon">🏆</span>
-            <span class="metric-label">最佳特徵組合 (k=2)</span>
+            <span class="metric-icon" id="mIcon2">🏆</span>
+            <span class="metric-label" id="mLabel2">最佳特徵組合</span>
           </div>
-          <div class="metric-value gradient-text">R&D + Marketing</div>
-          <div class="metric-desc">前向篩選最佳點，獲取最高預測綜效</div>
+          <div class="metric-value gradient-text" id="mVal2">R&D + Marketing</div>
+          <div class="metric-desc" id="mDesc2">前向篩選最佳甜蜜點，獲取最高預測綜效</div>
         </div>
 
-        <div class="metric-card">
+        <div class="metric-card" id="cardMetric3">
           <div class="metric-header">
-            <span class="metric-icon">📉</span>
-            <span class="metric-label">最低驗證 RMSE</span>
+            <span class="metric-icon" id="mIcon3">📉</span>
+            <span class="metric-label" id="mLabel3">最低驗證 RMSE</span>
           </div>
-          <div class="metric-value">$8,198.80</div>
-          <div class="metric-desc">較全變數模型 ($9,137.99) 誤差降低 10.3%</div>
+          <div class="metric-value" id="mVal3">$8,198.80</div>
+          <div class="metric-desc" id="mDesc3">較全變數模型 ($9,137.99) 誤差降低 10.3%</div>
         </div>
 
-        <div class="metric-card">
+        <div class="metric-card" id="cardMetric4">
           <div class="metric-header">
-            <span class="metric-icon">🎯</span>
-            <span class="metric-label">最高解釋力 (R²)</span>
+            <span class="metric-icon" id="mIcon4">🎯</span>
+            <span class="metric-label" id="mLabel4">模型解釋力指標</span>
           </div>
-          <div class="metric-value">0.9474</div>
-          <div class="metric-desc">超越單特徵 (0.9465) 與全變數 (0.9347)</div>
+          <div class="metric-value" id="mVal4">0.9474</div>
+          <div class="metric-desc" id="mDesc4">超越單特徵 (0.9465) 與全變數 (0.9347)</div>
         </div>
       </div>
     </section>
@@ -95,10 +113,10 @@
     <!-- SECTION: Forward Stepwise Selection (Centerpiece - Match User's Request) -->
     <section class="section-container" id="stepwise">
       <div class="section-header">
-        <div class="section-tag">KEY FINDING & VISUALIZATION</div>
-        <h2 class="section-title">特徵數量 vs. 模型成效評估（逐步篩選曲線）</h2>
-        <p class="section-desc">
-          透過逐步前向選擇（Forward Stepwise Selection）評估 1 至 5 個特徵時的測試集 RMSE 與 R² 指標。視覺化曲線清晰揭示特徵數量為 2 時為最佳甜蜜點（Sweet Spot）。
+        <div class="section-tag" id="stepwiseTag">KEY FINDING & VISUALIZATION</div>
+        <h2 class="section-title" id="stepwiseTitle">特徵數量 vs. 模型成效評估（逐步篩選曲線）</h2>
+        <p class="section-desc" id="stepwiseDesc">
+          透過逐步前向選擇（Forward Stepwise Selection）評估不同特徵數量時的測試集 RMSE 與 R² 指標變化軌跡。
         </p>
       </div>
 
@@ -108,13 +126,13 @@
         <div class="chart-panel">
           <div class="panel-header">
             <h3 class="panel-title">RMSE by Number of Features</h3>
-            <span class="status-chip success-chip">k=2 達到誤差最低點</span>
+            <span class="status-chip success-chip" id="rmseChip">最佳特徵數達到最低點</span>
           </div>
           <div class="chart-canvas-wrapper">
             <canvas id="rmseChart"></canvas>
           </div>
           <div class="panel-footnote">
-            <span class="dot-indicator blue"></span> 測試集隨特徵數增加的均方根誤差（RMSE）變化軌跡
+            <span class="dot-indicator blue"></span> <span id="rmseFootnote">測試集隨特徵數增加的均方根誤差（RMSE）變化軌跡</span>
           </div>
         </div>
 
@@ -122,13 +140,13 @@
         <div class="chart-panel">
           <div class="panel-header">
             <h3 class="panel-title">R-squared by Number of Features</h3>
-            <span class="status-chip primary-chip">k=2 達到解釋力頂峰</span>
+            <span class="status-chip primary-chip" id="r2Chip">解釋力頂峰點</span>
           </div>
           <div class="chart-canvas-wrapper">
             <canvas id="r2Chart"></canvas>
           </div>
           <div class="panel-footnote">
-            <span class="dot-indicator cyan"></span> 測試集隨特徵數增加的決定係數（R²）變化軌跡
+            <span class="dot-indicator cyan"></span> <span id="r2Footnote">測試集隨特徵數增加的決定係數（R²）變化軌跡</span>
           </div>
         </div>
       </div>
@@ -137,8 +155,8 @@
       <div class="table-card">
         <div class="table-card-header">
           <div>
-            <h3 class="table-title">特徵子集評估摘要表 (Forward Stepwise Selection Results)</h3>
-            <p class="table-subtitle">測試集評估 (test_size = 0.2, random_state = 0)，重現指標與選入特徵序列</p>
+            <h3 class="table-title" id="tableTitle">特徵子集評估摘要表 (Forward Stepwise Selection Results)</h3>
+            <p class="table-subtitle" id="tableSubtitle">測試集評估 (test_size = 0.2)，重現指標與選入特徵序列</p>
           </div>
           <button id="btnExportCSV" class="btn btn-sm btn-ghost">匯出數據 (CSV)</button>
         </div>
@@ -149,53 +167,19 @@
               <tr>
                 <th style="width: 15%;">Number of Features</th>
                 <th style="width: 55%;">Selected Features</th>
-                <th style="width: 15%; text-align: right;">RMSE ($)</th>
-                <th style="width: 15%; text-align: right;">R-squared</th>
+                <th style="width: 15%; text-align: right;" id="thMetric1">RMSE</th>
+                <th style="width: 15%; text-align: right;" id="thMetric2">R-squared</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td><span class="rank-badge">1</span></td>
-                <td><code class="code-feature">[R&D Spend]</code></td>
-                <td class="text-right num-mono">8274.868018</td>
-                <td class="text-right num-mono">0.946459</td>
-              </tr>
-              <tr class="optimal-row">
-                <td>
-                  <span class="rank-badge optimal-badge">2 ⭐ 最佳推薦</span>
-                </td>
-                <td><code class="code-feature optimal-feat">[R&D Spend, Marketing Spend]</code></td>
-                <td class="text-right num-mono text-success">8198.797191</td>
-                <td class="text-right num-mono text-success">0.947439</td>
-              </tr>
-              <tr>
-                <td><span class="rank-badge">3</span></td>
-                <td><code class="code-feature">[R&D Spend, Marketing Spend, State_New York]</code></td>
-                <td class="text-right num-mono">8309.059683</td>
-                <td class="text-right num-mono">0.946015</td>
-              </tr>
-              <tr>
-                <td><span class="rank-badge">4</span></td>
-                <td><code class="code-feature">[R&D Spend, Marketing Spend, State_New York, State_Florida]</code></td>
-                <td class="text-right num-mono">8409.916714</td>
-                <td class="text-right num-mono">0.944697</td>
-              </tr>
-              <tr class="redundant-row">
-                <td><span class="rank-badge">5</span></td>
-                <td>
-                  <code class="code-feature">[R&D Spend, Marketing Spend, State_New York, State_Florida, State_California]</code>
-                  <span class="tooltip-info" title="數學擬合上加入行政支出 Administration，RMSE 顯著惡化至 9137.99">⚠️ 產生噪聲</span>
-                </td>
-                <td class="text-right num-mono text-danger">9137.990153</td>
-                <td class="text-right num-mono text-danger">0.934707</td>
-              </tr>
+            <tbody id="tableBody">
+              <!-- Dynamically populated by app.js based on dataset -->
             </tbody>
           </table>
         </div>
         <div class="table-insight-bar">
           <span class="insight-icon">💡</span>
-          <span class="insight-text">
-            <strong>核心洞察：</strong> 單一特徵 R&D Spend 已解釋 94.65% 變異；加入 Marketing Spend 後解釋力達到 94.74%，RMSE 降至最低。後續納入地理虛擬變數與行政費用後，測試集 RMSE 反彈攀升，證實了多餘特徵帶來的過擬合與噪聲！
+          <span class="insight-text" id="insightText">
+            <!-- Dynamically populated -->
           </span>
         </div>
       </div>
@@ -206,7 +190,7 @@
       <div class="section-header">
         <div class="section-tag">ALGORITHM COMPARISON</div>
         <h2 class="section-title">5 大特徵選取演算法深度對比</h2>
-        <p class="section-desc">針對 50 Startups 資料集，我們運用了統計推論、正則化縮減與封裝子集評估等多元策略：</p>
+        <p class="section-desc" id="algoHeaderDesc">運用統計推論、正則化縮減與封裝子集評估等多重策略：</p>
       </div>
 
       <!-- Algorithm Tabs Navigation -->
@@ -218,372 +202,31 @@
         <button class="tab-btn" data-tab="tab-forward">5. Forward Stepwise</button>
       </div>
 
-      <!-- Tab Content 1: VIF -->
-      <div class="tab-content active" id="tab-vif">
-        <div class="algo-card-grid">
-          <div class="algo-info-card">
-            <div class="algo-badge">診斷指標</div>
-            <h3>方差膨脹因子 (Variance Inflation Factor, VIF)</h3>
-            <p>量化特徵間的嚴重共線性問題。若特徵之 VIF &gt; 5 或 10，代表該特徵高度可由其他特徵線性預測，會導致回歸係數標準誤放大。</p>
-            
-            <div class="vif-metrics-list">
-              <div class="vif-item safe">
-                <span class="vif-feat">R&D Spend</span>
-                <span class="vif-val">VIF = 2.50</span>
-                <span class="vif-status">良好 (無共線性)</span>
-              </div>
-              <div class="vif-item safe">
-                <span class="vif-feat">Marketing Spend</span>
-                <span class="vif-val">VIF = 2.42</span>
-                <span class="vif-status">良好 (無共線性)</span>
-              </div>
-              <div class="vif-item safe">
-                <span class="vif-feat">State_Florida</span>
-                <span class="vif-val">VIF = 1.39</span>
-                <span class="vif-status">良好</span>
-              </div>
-              <div class="vif-item safe">
-                <span class="vif-feat">State_New York</span>
-                <span class="vif-val">VIF = 1.34</span>
-                <span class="vif-status">良好</span>
-              </div>
-              <div class="vif-item safe">
-                <span class="vif-feat">Administration</span>
-                <span class="vif-val">VIF = 1.18</span>
-                <span class="vif-status">良好</span>
-              </div>
-            </div>
-          </div>
-          <div class="algo-visual-card">
-            <h4>各特徵 VIF 數值分佈</h4>
-            <div class="chart-canvas-wrapper-sm">
-              <canvas id="vifChart"></canvas>
-            </div>
-            <p class="chart-caption">全部自變數 VIF 皆小於 2.5，代表本資料集無嚴重多重共線性，可安心進行線性回歸。</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab Content 2: Backward Elimination -->
-      <div class="tab-content" id="tab-be">
-        <div class="algo-card-grid">
-          <div class="algo-info-card">
-            <div class="algo-badge">假設檢定策略</div>
-            <h3>反向淘汰法 (Backward Elimination with OLS)</h3>
-            <p>從全模型開始，每次剔除 p-value 最高且大於顯著水準（α = 0.05）之特徵，直到所有保留特徵皆顯著。</p>
-            <div class="stepper-list">
-              <div class="step-item dropped">
-                <div class="step-num">Step 1</div>
-                <div class="step-content">
-                  <strong>剔除 State_New York</strong>
-                  <span>Max p-value = 0.9898 (&gt; 0.05，極度不顯著)</span>
-                </div>
-              </div>
-              <div class="step-item dropped">
-                <div class="step-num">Step 2</div>
-                <div class="step-content">
-                  <strong>剔除 State_Florida</strong>
-                  <span>Max p-value = 0.9398 (&gt; 0.05，不顯著)</span>
-                </div>
-              </div>
-              <div class="step-item dropped">
-                <div class="step-num">Step 3</div>
-                <div class="step-content">
-                  <strong>剔除 Administration</strong>
-                  <span>Max p-value = 0.6018 (&gt; 0.05，行政費用與獲利無關)</span>
-                </div>
-              </div>
-              <div class="step-item dropped">
-                <div class="step-num">Step 4</div>
-                <div class="step-content">
-                  <strong>剔除 Marketing Spend</strong>
-                  <span>Max p-value = 0.0600 (略高於 0.05 臨界值)</span>
-                </div>
-              </div>
-              <div class="step-item selected">
-                <div class="step-num">Final</div>
-                <div class="step-content">
-                  <strong>保留特徵：[R&D Spend]</strong>
-                  <span>p-value &lt; 0.0001，極度顯著驅動獲利</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="algo-visual-card">
-            <h4>OLS p-value 剔除歷程檢視</h4>
-            <div class="chart-canvas-wrapper-sm">
-              <canvas id="beChart"></canvas>
-            </div>
-            <p class="chart-caption">紅色虛線為 α = 0.05 門檻。僅 R&D Spend 遠低於顯著水準。</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab Content 3: RFECV -->
-      <div class="tab-content" id="tab-rfecv">
-        <div class="algo-card-grid">
-          <div class="algo-info-card">
-            <div class="algo-badge">交叉驗證封裝法</div>
-            <h3>遞迴特徵消除與交叉驗證 (RFECV)</h3>
-            <p>採用 5 折交叉驗證（5-Fold Cross Validation），以 R² 為評估指標，自動探索最佳特徵維度，兼顧泛化能力。</p>
-            <div class="rfecv-summary">
-              <div class="summary-box">
-                <span class="label">演算法選定最佳特徵數</span>
-                <span class="val text-success">2 個特徵</span>
-              </div>
-              <div class="summary-box">
-                <span class="label">RFECV 入選特徵</span>
-                <span class="val">[R&D Spend, Marketing Spend]</span>
-              </div>
-            </div>
-            <div class="ranking-table-box">
-              <h4>特徵排名（Rank 1 為最優選入）</h4>
-              <ul class="rank-list">
-                <li class="rank-item rank-1"><span>R&D Spend</span><span class="badge">Rank 1</span></li>
-                <li class="rank-item rank-1"><span>Marketing Spend</span><span class="badge">Rank 1</span></li>
-                <li class="rank-item rank-2"><span>Administration</span><span class="badge">Rank 2</span></li>
-                <li class="rank-item rank-3"><span>State_Florida</span><span class="badge">Rank 3</span></li>
-                <li class="rank-item rank-4"><span>State_New York</span><span class="badge">Rank 4</span></li>
-              </ul>
-            </div>
-          </div>
-          <div class="algo-visual-card">
-            <h4>RFECV 5-Fold 交叉驗證分數曲線</h4>
-            <div class="chart-canvas-wrapper-sm">
-              <canvas id="rfecvChart"></canvas>
-            </div>
-            <p class="chart-caption">在特徵數為 2 時達到最高 CV R² 分數，與前向篩選相互印證！</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab Content 4: LassoCV -->
-      <div class="tab-content" id="tab-lasso">
-        <div class="algo-card-grid">
-          <div class="algo-info-card">
-            <div class="algo-badge">L1 嵌入式正則化</div>
-            <h3>LassoCV (Least Absolute Shrinkage and Selection Operator)</h3>
-            <p>利用 L1 範數懲罰項將無影響力的回歸係數精確壓縮至 0，達成自動稀疏特徵選擇，有效防範過擬合。</p>
-            <div class="lasso-coef-list">
-              <div class="lasso-item dominant">
-                <span class="f-name">R&D Spend (研發支出)</span>
-                <span class="f-coef">+36,030.42</span>
-                <span class="f-desc">絕對主導因素</span>
-              </div>
-              <div class="lasso-item mild">
-                <span class="f-name">Marketing Spend (行銷費用)</span>
-                <span class="f-coef">+3,290.32</span>
-                <span class="f-desc">正向輔助因素</span>
-              </div>
-              <div class="lasso-item tiny">
-                <span class="f-name">Administration (行政成本)</span>
-                <span class="f-coef">-156.89</span>
-                <span class="f-desc">微幅負向干擾</span>
-              </div>
-              <div class="lasso-item zero">
-                <span class="f-name">State_Florida</span>
-                <span class="f-coef">0.0000</span>
-                <span class="f-desc">完全收縮剔除</span>
-              </div>
-              <div class="lasso-item zero">
-                <span class="f-name">State_New York</span>
-                <span class="f-coef">0.0000</span>
-                <span class="f-desc">完全收縮剔除</span>
-              </div>
-            </div>
-          </div>
-          <div class="algo-visual-card">
-            <h4>標準化回歸係數 (Standardized Coefficients)</h4>
-            <div class="chart-canvas-wrapper-sm">
-              <canvas id="lassoChart"></canvas>
-            </div>
-            <p class="chart-caption">地區變數係數被強制壓縮至 0，研發支出係數居首，突顯核心資本流向。</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab Content 5: Forward Stepwise -->
-      <div class="tab-content" id="tab-forward">
-        <div class="algo-card-grid">
-          <div class="algo-info-card">
-            <div class="algo-badge">貪婪搜尋演算法</div>
-            <h3>前向逐步篩選法 (Forward Stepwise Selection)</h3>
-            <p>從空模型出發，每輪挑選能使驗證指標（RMSE）改善幅度最大的一個候選特徵，直到遍歷所有特徵。</p>
-            <div class="forward-steps">
-              <div class="f-step active">
-                <span class="k-label">k=1</span>
-                <div><strong>R&D Spend</strong> (RMSE: $8,274.87, R²: 0.9465)</div>
-              </div>
-              <div class="f-step highlight">
-                <span class="k-label">k=2</span>
-                <div><strong>+ Marketing Spend</strong> (RMSE: $8,198.80 🏆, R²: 0.9474)</div>
-              </div>
-              <div class="f-step">
-                <span class="k-label">k=3</span>
-                <div><strong>+ State_New York</strong> (RMSE: $8,309.06, R²: 0.9460)</div>
-              </div>
-              <div class="f-step">
-                <span class="k-label">k=4</span>
-                <div><strong>+ State_Florida</strong> (RMSE: $8,409.92, R²: 0.9447)</div>
-              </div>
-              <div class="f-step">
-                <span class="k-label">k=5</span>
-                <div><strong>+ Administration</strong> (RMSE: $9,137.99, R²: 0.9347)</div>
-              </div>
-            </div>
-          </div>
-          <div class="algo-visual-card">
-            <h4>決策結論總評</h4>
-            <div class="decision-box">
-              <div class="decision-item">
-                <span class="decision-title">🎯 最佳效能模型：</span>
-                <p><strong>[R&D Spend, Marketing Spend]</strong>（RMSE 降至 $8,198.80，R² 達 94.74%）。</p>
-              </div>
-              <div class="decision-item">
-                <span class="decision-title">⚡ 最佳簡約模型：</span>
-                <p><strong>[R&D Spend]</strong> 單變數即可涵蓋 94.65% 獲利變化，適合極簡維運。</p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- Dynamic Tab Content Wrapper -->
+      <div id="dynamicAlgoTabContent">
+        <!-- Rendered by app.js -->
       </div>
     </section>
 
-    <!-- SECTION: Live Profit Inference Simulator -->
+    <!-- SECTION: Live Inference Simulator -->
     <section class="section-container" id="simulator">
       <div class="section-header">
         <div class="section-tag">PRODUCTION DEPLOYMENT & INFERENCE</div>
-        <h2 class="section-title">新創獲利預測推論模擬器</h2>
-        <p class="section-desc">
-          調整企業各項營運投入金額，比較「最佳推薦模型 (2 特徵)」、「極簡模型 (1 特徵)」與「全特徵模型」的預測差異：
+        <h2 class="section-title" id="simSectionTitle">即時預測推論模擬器</h2>
+        <p class="section-desc" id="simSectionDesc">
+          調整各項輸入參數，比較「最佳推薦模型」、「簡約模型」與「全特徵模型」的即時預測反應：
         </p>
       </div>
 
       <div class="simulator-layout">
-        <!-- Input Controls -->
-        <div class="sim-panel sim-inputs">
-          <div class="sim-panel-title">
-            <span>⚙️ 營運投入參數調整</span>
-            <button id="btnResetInputs" class="btn btn-xs btn-ghost">重設預設值</button>
-          </div>
-
-          <!-- Input 1: R&D Spend -->
-          <div class="input-group">
-            <div class="input-header">
-              <label for="inputRD">研發支出 (R&D Spend)</label>
-              <span class="input-val-badge" id="valRD">$130,000</span>
-            </div>
-            <input type="range" id="inputRD" min="0" max="200000" step="1000" value="130000" class="sim-slider">
-            <div class="slider-limits">
-              <span>$0</span>
-              <span>$100k</span>
-              <span>$200k</span>
-            </div>
-          </div>
-
-          <!-- Input 2: Marketing Spend -->
-          <div class="input-group">
-            <div class="input-header">
-              <label for="inputMarketing">行銷費用 (Marketing Spend)</label>
-              <span class="input-val-badge" id="valMarketing">$250,000</span>
-            </div>
-            <input type="range" id="inputMarketing" min="0" max="500000" step="5000" value="250000" class="sim-slider">
-            <div class="slider-limits">
-              <span>$0</span>
-              <span>$250k</span>
-              <span>$500k</span>
-            </div>
-          </div>
-
-          <!-- Input 3: Administration Spend -->
-          <div class="input-group">
-            <div class="input-header">
-              <label for="inputAdmin">行政成本 (Administration Spend)</label>
-              <span class="input-val-badge" id="valAdmin">$120,000</span>
-            </div>
-            <input type="range" id="inputAdmin" min="0" max="200000" step="2000" value="120000" class="sim-slider">
-            <div class="slider-limits">
-              <span>$0</span>
-              <span>$100k</span>
-              <span>$200k</span>
-            </div>
-          </div>
-
-          <!-- Input 4: State Selector -->
-          <div class="input-group">
-            <label for="selectState">公司註冊地區 (State)</label>
-            <select id="selectState" class="sim-select">
-              <option value="New York" selected>New York</option>
-              <option value="California">California</option>
-              <option value="Florida">Florida</option>
-            </select>
-          </div>
-
-          <!-- Model Switcher -->
-          <div class="input-group">
-            <label>套用推論模型</label>
-            <div class="model-radio-group">
-              <label class="radio-card active">
-                <input type="radio" name="modelType" value="optimal" checked>
-                <div class="radio-content">
-                  <strong>🏆 最佳 2 特徵模型 (推薦)</strong>
-                  <span>R&D + Marketing (RMSE $8,198)</span>
-                </div>
-              </label>
-              <label class="radio-card">
-                <input type="radio" name="modelType" value="parsimonious">
-                <div class="radio-content">
-                  <strong>⚡ 極簡 1 特徵模型</strong>
-                  <span>僅 R&D Spend (RMSE $8,274)</span>
-                </div>
-              </label>
-              <label class="radio-card">
-                <input type="radio" name="modelType" value="full">
-                <div class="radio-content">
-                  <strong>🌐 全變數模型 (5 特徵)</strong>
-                  <span>含行政與地理變數 (RMSE $9,137)</span>
-                </div>
-              </label>
-            </div>
-          </div>
+        <!-- Dynamic Input Controls -->
+        <div class="sim-panel sim-inputs" id="simInputsContainer">
+          <!-- Rendered by app.js based on active dataset -->
         </div>
 
         <!-- Output Results Card -->
-        <div class="sim-panel sim-outputs">
-          <div class="sim-panel-title">
-            <span>📈 即時預測結果 (Inference Output)</span>
-            <span class="model-tag" id="currentModelTag">Optimal Model (k=2)</span>
-          </div>
-
-          <div class="prediction-big-card">
-            <div class="pred-label">預估企業年度淨獲利 (Estimated Profit)</div>
-            <div class="pred-number" id="predProfit">$160,820</div>
-            <div class="pred-equation" id="predEquation">
-              Profit = 0.7966 × (R&D) + 0.0299 × (Marketing) + $46,975.86
-            </div>
-          </div>
-
-          <!-- Comparison Grid -->
-          <div class="pred-comparison-grid">
-            <div class="comp-box">
-              <div class="comp-title">研發獲利槓桿</div>
-              <div class="comp-val text-cyan">每投 $1 獲利 +$0.80</div>
-              <div class="comp-desc">最具成長回報率</div>
-            </div>
-            <div class="comp-box">
-              <div class="comp-title">行銷放大效應</div>
-              <div class="comp-val text-purple">每投 $1 獲利 +$0.03</div>
-              <div class="comp-desc">具備正向協同綜效</div>
-            </div>
-          </div>
-
-          <!-- Expenditure Breakdown Doughnut -->
-          <div class="expenditure-panel">
-            <h4>當前支出結構分配比例</h4>
-            <div class="doughnut-wrapper">
-              <canvas id="doughnutChart"></canvas>
-            </div>
-          </div>
+        <div class="sim-panel sim-outputs" id="simOutputsContainer">
+          <!-- Rendered by app.js based on active dataset -->
         </div>
       </div>
     </section>
@@ -593,114 +236,55 @@
       <div class="section-header">
         <div class="section-tag">SYNTHESIS & RECOMMENDATIONS</div>
         <h2 class="section-title">5 大特徵選取演算法決策矩陣</h2>
-        <p class="section-desc">橫向評估各演算法的機制、計算成本、共線性處理能力與最終選拔結論：</p>
+        <p class="section-desc" id="matrixSubtitle">橫向評估各演算法的機制、計算成本、共線性處理能力與最終選拔結論：</p>
       </div>
 
       <div class="matrix-card">
         <div class="table-responsive">
-          <table class="custom-table matrix-table">
+          <table class="custom-table matrix-table" id="matrixTable">
             <thead>
               <tr>
                 <th>演算法</th>
                 <th>類型</th>
-                <th>篩選入選特徵</th>
+                <th>入選特徵</th>
                 <th>特徵數</th>
                 <th>主要優勢</th>
                 <th>侷限性</th>
                 <th>推薦應用情境</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td><strong>1. VIF</strong></td>
-                <td><span class="chip chip-filter">統計檢驗</span></td>
-                <td>全部（無共線性）</td>
-                <td>5</td>
-                <td>精確揪出膨脹係數，避免共線性陷阱</td>
-                <td>無法評估與 y 的直接相關度</td>
-                <td>建模前的首要共線性診斷</td>
-              </tr>
-              <tr>
-                <td><strong>2. Backward OLS</strong></td>
-                <td><span class="chip chip-wrapper">封裝法 (p-val)</span></td>
-                <td>[R&D Spend]</td>
-                <td>1</td>
-                <td>統計學嚴謹，具有可解釋 p-value</td>
-                <td>對多重共線性較敏感，易剔除潛在變數</td>
-                <td>重視統計顯著性之學術或醫學回歸</td>
-              </tr>
-              <tr>
-                <td><strong>3. RFECV</strong></td>
-                <td><span class="chip chip-wrapper">封裝法 (CV)</span></td>
-                <td>[R&D, Marketing]</td>
-                <td>2</td>
-                <td>結合 K 折交叉驗證，抗過擬合力強</td>
-                <td>計算量較大，每次需反覆擬合</td>
-                <td>機器學習管線自動化維度搜尋</td>
-              </tr>
-              <tr>
-                <td><strong>4. LassoCV</strong></td>
-                <td><span class="chip chip-embed">嵌入式 (L1)</span></td>
-                <td>[R&D, Marketing, Admin]</td>
-                <td>3</td>
-                <td>係數精準收縮至 0，同時完成正則與選取</td>
-                <td>高度相關變數中只會隨機挑選其一</td>
-                <td>高維度特徵（p &gt; n）稀疏建模</td>
-              </tr>
-              <tr class="optimal-row">
-                <td><strong>5. Forward Stepwise</strong></td>
-                <td><span class="chip chip-wrapper">貪婪搜尋</span></td>
-                <td>[R&D, Marketing]</td>
-                <td>2</td>
-                <td>直觀展現特徵增加曲線，明確指出甜蜜點</td>
-                <td>若特徵量極大時運算成本較高</td>
-                <td><strong>新創獲利預測之首選最佳實踐 ⭐</strong></td>
-              </tr>
+            <tbody id="matrixTableBody">
+              <!-- Rendered by app.js -->
             </tbody>
           </table>
         </div>
       </div>
     </section>
 
-    <!-- SECTION: GitHub Pages Deployment Guide -->
+    <!-- SECTION: Project Information & GitHub Pages Deployment Guide -->
     <section class="section-container" id="deployment">
       <div class="section-header">
-        <div class="section-tag">DEPLOYMENT GUIDE</div>
-        <h2 class="section-title">GitHub Pages 一鍵部屬指南</h2>
-        <p class="section-desc">本分析平台為純靜態現代 Web 專案（HTML5 + Vanilla CSS + ES6 + Chart.js），可直接部屬於 GitHub Pages：</p>
+        <div class="section-tag">DEPLOYMENT & REPO INFO</div>
+        <h2 class="section-title">GitHub Pages 與專案代碼指南</h2>
+        <p class="section-desc">本分析平台代碼包含 50 Startups (`main.py`) 與 Spotify Tracks (`hw2.py`)，支援線上動態雙專案切換：</p>
       </div>
 
       <div class="deploy-card">
         <div class="deploy-step">
-          <div class="deploy-step-badge">步驟 1</div>
+          <div class="deploy-step-badge">原始碼</div>
           <div class="deploy-step-body">
-            <h4>建立 GitHub 儲存庫</h4>
-            <p>前往 <a href="https://github.com/new" target="_blank" rel="noopener">GitHub New Repository</a> 建立一個新的公開儲存庫（例如 <code>50-startups-feature-selection</code>）。</p>
+            <h4>GitHub 儲存庫</h4>
+            <p>已完整推送到 GitHub：<a href="https://github.com/Dave1588/50-startups-platform" target="_blank" rel="noopener">https://github.com/Dave1588/50-startups-platform</a></p>
+            <p>包含 <code>main.py</code> (50 Startups 分析) 與 <code>hw2.py</code> (Spotify Tracks 音樂流行度分析)。</p>
           </div>
         </div>
 
         <div class="deploy-step">
-          <div class="deploy-step-badge">步驟 2</div>
+          <div class="deploy-step-badge">線上展示</div>
           <div class="deploy-step-body">
-            <h4>在本地終端推動代碼</h4>
-            <p>在當前目錄執行以下 Git 指令：</p>
-            <div class="code-block">
-              <code>git init
-git add .
-git commit -m "feat: 50 Startups 5大特徵選取演算法分析平台與即時推論模擬器"
-git branch -M main
-git remote add origin https://github.com/&lt;您的GitHub帳號&gt;/&lt;專案名稱&gt;.git
-git push -u origin main</code>
-            </div>
-          </div>
-        </div>
-
-        <div class="deploy-step">
-          <div class="deploy-step-badge">步驟 3</div>
-          <div class="deploy-step-body">
-            <h4>開啟 GitHub Pages 服務</h4>
-            <p>進入儲存庫 <strong>Settings</strong> ➡️ 點擊左側 <strong>Pages</strong> ➡️ 在 <strong>Branch</strong> 選取 <code>main</code> / <code>/ (root)</code> 並點擊 <strong>Save</strong>。</p>
-            <p>幾秒後即可獲取專屬網址：<code>https://&lt;您的GitHub帳號&gt;.github.io/&lt;專案名稱&gt;/</code></p>
+            <h4>GitHub Pages 線上站點</h4>
+            <p>網址：<a href="https://dave1588.github.io/50-startups-platform/" target="_blank" rel="noopener">https://dave1588.github.io/50-startups-platform/</a></p>
+            <p>任何訪客皆可使用頂部下拉選單在兩大機器學習專案之間自由切換與推論！</p>
           </div>
         </div>
       </div>
@@ -711,14 +295,14 @@ git push -u origin main</code>
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-brand">
-        <strong>50 Startups FeatureLab</strong>
-        <span>機器學習特徵工程與決策分析展示平台</span>
+        <strong>ML FeatureLab</strong>
+        <span>機器學習 5 大特徵工程決策分析與即時推論展示平台</span>
       </div>
       <div class="footer-tech">
-        <span>技術棧：Vanilla HTML5 · CSS3 Grid/Flexbox · ES6 · Chart.js</span>
+        <span>技術棧：Vanilla HTML5 · CSS3 Grid/Flexbox · ES6 · Chart.js · Scikit-Learn</span>
       </div>
       <div class="footer-copy">
-        <span>© 2026 50 Startups Analytics Project. Ready for GitHub Pages.</span>
+        <span>© 2026 50 Startups & Spotify Tracks Analytics Project. Hosted on GitHub Pages.</span>
       </div>
     </div>
   </footer>
